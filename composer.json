@@ -1,0 +1,34 @@
+{
+    "name": "brick/phonenumber-doctrine",
+    "description": "Doctrine type mappings for brick/phonenumber",
+    "type": "library",
+    "keywords": [
+        "Brick",
+        "PhoneNumber",
+        "Doctrine"
+    ],
+    "license": "MIT",
+    "require": {
+        "brick/phonenumber": "~0.2.0 || ~0.3.0",
+        "doctrine/dbal": "^2.7.0",
+        "doctrine/orm": "^2.6.0",
+        "php": "^7.1 || ^8.0"
+    },
+    "require-dev": {
+        "ext-pdo": "*",
+        "ext-pdo_sqlite": "*",
+        "phpunit/phpunit": "^7.5.15 || ^8.0 || ^9.0",
+        "php-coveralls/php-coveralls": "^2.4",
+        "vimeo/psalm": "^4.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "Brick\\PhoneNumber\\Doctrine\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Brick\\PhoneNumber\\Doctrine\\Tests\\": "tests/"
+        }
+    }
+}
