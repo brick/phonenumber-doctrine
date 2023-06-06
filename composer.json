@@ -9,16 +9,16 @@
     ],
     "license": "MIT",
     "require": {
-        "brick/phonenumber": "~0.2.0 || ~0.3.0 || ~0.4.0",
+        "brick/phonenumber": "~0.5.0",
         "doctrine/dbal": "^2.7.0 || ^3.0.0",
-        "doctrine/orm": "^2.6.0",
-        "php": "^7.1 || ^8.0"
+        "doctrine/orm": "^2.7.0",
+        "php": "^7.4 || ^8.0"
     },
     "require-dev": {
         "ext-pdo": "*",
         "ext-pdo_sqlite": "*",
         "doctrine/annotations": "^1.11",
-        "phpunit/phpunit": "^7.5.15 || ^8.5.23 || ^9.0",
+        "phpunit/phpunit": "^9.0",
         "php-coveralls/php-coveralls": "^2.4",
         "vimeo/psalm": "^4.22.0"
     },
