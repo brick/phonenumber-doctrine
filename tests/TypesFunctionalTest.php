@@ -9,7 +9,7 @@ use Brick\PhoneNumber\PhoneNumber;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\Tools\SchemaTool;
 
-class TypesFunctionalTest extends AbstractFunctionalTest
+class TypesFunctionalTest extends AbstractFunctionalTestCase
 {
     public function testCreateSchema(): Connection
     {

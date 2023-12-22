@@ -18,7 +18,7 @@
         "ext-pdo": "*",
         "ext-pdo_sqlite": "*",
         "doctrine/annotations": "^1.11",
-        "phpunit/phpunit": "^9.0",
+        "phpunit/phpunit": "^10.5",
         "php-coveralls/php-coveralls": "^2.4",
         "vimeo/psalm": "^5.15.0"
     },
