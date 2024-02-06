@@ -23,9 +23,9 @@ class TypesFunctionalTest extends AbstractFunctionalTestCase
         self::assertCount(1, $sql);
         $sql = $sql[0];
 
-        self::assertStringContainsString('phoneNumber VARCHAR(16) DEFAULT NULL --(DC2Type:PhoneNumber)', $sql);
+        self::assertStringContainsString('phoneNumber VARCHAR(16) DEFAULT NULL', $sql);
 
-        $connection->exec($sql);
+        $connection->executeStatement($sql);
 
         return $connection;
     }
