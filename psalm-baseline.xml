@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.29.0@7ec5ffbd5f68ae03782d7fd33fff0c45a69f95b3">
+<files psalm-version="5.26.1@d747f6500b38ac4f7dfc5edbcae6e4b637d7add0">
   <file src="src/Types/PhoneNumberType.php">
-    <DeprecatedMethod occurrences="1">
-      <code>getVarcharTypeDeclarationSQL</code>
-    </DeprecatedMethod>
+    <MixedInferredReturnType>
+      <code><![CDATA[string]]></code>
+    </MixedInferredReturnType>
+    <MixedReturnStatement>
+      <code><![CDATA[$platform->getVarcharTypeDeclarationSQL($column)]]></code>
+    </MixedReturnStatement>
+    <UndefinedMethod>
+      <code><![CDATA[ConversionException::conversionFailedInvalidType($value, $this->getName(), ['string', 'null'])]]></code>
+      <code><![CDATA[ConversionException::conversionFailedInvalidType($value, $this->getName(), [PhoneNumber::class, 'null'])]]></code>
+      <code><![CDATA[getVarcharTypeDeclarationSQL]]></code>
+    </UndefinedMethod>
   </file>
 </files>
