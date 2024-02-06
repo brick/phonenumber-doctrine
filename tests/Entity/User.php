@@ -7,24 +7,14 @@ namespace Brick\PhoneNumber\Doctrine\Tests\Entity;
 use Brick\PhoneNumber\PhoneNumber;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity
- */
+#[ORM\Entity]
 class User
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue
-     *
-     * @var int
-     */
-    public $id;
+    #[ORM\Id]
+    #[ORM\Column(type: "integer")]
+    #[ORM\GeneratedValue]
+    public int $id;
 
-    /**
-     * @ORM\Column(type="PhoneNumber", nullable=true)
-     *
-     * @var PhoneNumber|null
-     */
-    public $phoneNumber = null;
+    #[ORM\Column(type: 'PhoneNumber', nullable: true)]
+    public ?PhoneNumber $phoneNumber = null;
 }
