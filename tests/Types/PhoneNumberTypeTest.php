@@ -9,6 +9,7 @@ use Brick\PhoneNumber\Doctrine\Types\PhoneNumberType;
 use Doctrine\DBAL\Platforms\SQLitePlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -19,9 +20,7 @@ class PhoneNumberTypeTest extends TestCase
         return Type::getType('PhoneNumber');
     }
 
-    /**
-     * @dataProvider providerConvertToDatabaseValue
-     */
+    #[DataProvider('providerConvertToDatabaseValue')]
     public function testConvertToDatabaseValue(?PhoneNumber $value, ?string $expectedValue): void
     {
         $type = $this->getPhoneNumberType();
@@ -39,9 +38,7 @@ class PhoneNumberTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider providerConvertToDatabaseValueWithInvalidValue
-     */
+    #[DataProvider('providerConvertToDatabaseValueWithInvalidValue')]
     public function testConvertToDatabaseValueWithInvalidValue(mixed $value): void
     {
         $type = $this->getPhoneNumberType();
@@ -61,9 +58,7 @@ class PhoneNumberTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider providerConvertToPHPValue
-     */
+    #[DataProvider('providerConvertToPHPValue')]
     public function testConvertToPHPValue(?string $value): void
     {
         $type = $this->getPhoneNumberType();
@@ -86,9 +81,7 @@ class PhoneNumberTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider providerConvertToPHPValueWithInvalidValue
-     */
+    #[DataProvider('providerConvertToPHPValueWithInvalidValue')]
     public function testConvertToPHPValueWithInvalidValue(mixed $value): void
     {
         $type = $this->getPhoneNumberType();
