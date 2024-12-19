@@ -6,10 +6,10 @@ namespace Brick\PhoneNumber\Doctrine\Tests\Types;
 
 use Brick\PhoneNumber\PhoneNumber;
 use Brick\PhoneNumber\Doctrine\Types\PhoneNumberType;
-use Brick\PhoneNumber\PhoneNumberParseException;
-use Doctrine\DBAL\Platforms\SqlitePlatform;
+use Doctrine\DBAL\Platforms\SQLitePlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
@@ -20,13 +20,11 @@ class PhoneNumberTypeTest extends TestCase
         return Type::getType('PhoneNumber');
     }
 
-    /**
-     * @dataProvider providerConvertToDatabaseValue
-     */
+    #[DataProvider('providerConvertToDatabaseValue')]
     public function testConvertToDatabaseValue(?PhoneNumber $value, ?string $expectedValue): void
     {
         $type = $this->getPhoneNumberType();
-        $actualValue = $type->convertToDatabaseValue($value, new SqlitePlatform());
+        $actualValue = $type->convertToDatabaseValue($value, new SQLitePlatform());
 
         self::assertSame($expectedValue, $actualValue);
     }
@@ -40,15 +38,13 @@ class PhoneNumberTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider providerConvertToDatabaseValueWithInvalidValue
-     */
-    public function testConvertToDatabaseValueWithInvalidValue($value): void
+    #[DataProvider('providerConvertToDatabaseValueWithInvalidValue')]
+    public function testConvertToDatabaseValueWithInvalidValue(mixed $value): void
     {
         $type = $this->getPhoneNumberType();
 
         $this->expectException(ConversionException::class);
-        $type->convertToDatabaseValue($value, new SqlitePlatform());
+        $type->convertToDatabaseValue($value, new SQLitePlatform());
     }
 
     public static function providerConvertToDatabaseValueWithInvalidValue(): array
@@ -62,13 +58,11 @@ class PhoneNumberTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider providerConvertToPHPValue
-     */
+    #[DataProvider('providerConvertToPHPValue')]
     public function testConvertToPHPValue(?string $value): void
     {
         $type = $this->getPhoneNumberType();
-        $convertedValue = $type->convertToPHPValue($value, new SqlitePlatform());
+        $convertedValue = $type->convertToPHPValue($value, new SQLitePlatform());
 
         if ($value === null) {
             self::assertNull($convertedValue);
@@ -87,23 +81,21 @@ class PhoneNumberTypeTest extends TestCase
         ];
     }
 
-    /**
-     * @dataProvider providerConvertToPHPValueWithInvalidValue
-     */
-    public function testConvertToPHPValueWithInvalidValue($value, string $expectedExceptionClass): void
+    #[DataProvider('providerConvertToPHPValueWithInvalidValue')]
+    public function testConvertToPHPValueWithInvalidValue(mixed $value): void
     {
         $type = $this->getPhoneNumberType();
 
-        $this->expectException($expectedExceptionClass);
-        $type->convertToPHPValue($value, new SqlitePlatform());
+        $this->expectException(ConversionException::class);
+        $type->convertToPHPValue($value, new SQLitePlatform());
     }
 
     public static function providerConvertToPHPValueWithInvalidValue(): array
     {
         return [
-            [123, ConversionException::class],
-            ['', PhoneNumberParseException::class],
-            ['+33', PhoneNumberParseException::class],
+            [123],
+            [''],
+            ['+33'],
         ];
     }
 }

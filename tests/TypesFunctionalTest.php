@@ -8,6 +8,7 @@ use Brick\PhoneNumber\Doctrine\Tests\Entity\User;
 use Brick\PhoneNumber\PhoneNumber;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\Tools\SchemaTool;
+use PHPUnit\Framework\Attributes\Depends;
 
 class TypesFunctionalTest extends AbstractFunctionalTestCase
 {
@@ -23,16 +24,14 @@ class TypesFunctionalTest extends AbstractFunctionalTestCase
         self::assertCount(1, $sql);
         $sql = $sql[0];
 
-        self::assertStringContainsString('phoneNumber VARCHAR(16) DEFAULT NULL --(DC2Type:PhoneNumber)', $sql);
+        self::assertStringContainsString('phoneNumber VARCHAR(16) DEFAULT NULL', $sql);
 
-        $connection->exec($sql);
+        $connection->executeStatement($sql);
 
         return $connection;
     }
 
-    /**
-     * @depends testCreateSchema
-     */
+    #[Depends('testCreateSchema')]
     public function testSaveNull(Connection $connection): Connection
     {
         $em = self::createEntityManager($connection);
@@ -49,9 +48,7 @@ class TypesFunctionalTest extends AbstractFunctionalTestCase
         return $connection;
     }
 
-    /**
-     * @depends testSaveNull
-     */
+    #[Depends('testSaveNull')]
     public function testLoadNull(Connection $connection): void
     {
         $em = self::createEntityManager($connection);
@@ -62,9 +59,7 @@ class TypesFunctionalTest extends AbstractFunctionalTestCase
         self::assertNull($entity->phoneNumber);
     }
 
-    /**
-     * @depends testCreateSchema
-     */
+    #[Depends('testCreateSchema')]
     public function testSaveValues(Connection $connection): Connection
     {
         $em = self::createEntityManager($connection);
@@ -83,9 +78,7 @@ class TypesFunctionalTest extends AbstractFunctionalTestCase
         return $connection;
     }
 
-    /**
-     * @depends testSaveValues
-     */
+    #[Depends('testSaveValues')]
     public function testLoadValues(Connection $connection): void
     {
         $em = self::createEntityManager($connection);
