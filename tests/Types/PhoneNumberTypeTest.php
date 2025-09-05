@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Brick\PhoneNumber\Doctrine\Tests\Types;
 
-use Brick\PhoneNumber\PhoneNumber;
 use Brick\PhoneNumber\Doctrine\Types\PhoneNumberType;
+use Brick\PhoneNumber\PhoneNumber;
 use Doctrine\DBAL\Platforms\SQLitePlatform;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Types\Type;
@@ -15,11 +15,6 @@ use stdClass;
 
 class PhoneNumberTypeTest extends TestCase
 {
-    private function getPhoneNumberType(): PhoneNumberType
-    {
-        return Type::getType('PhoneNumber');
-    }
-
     #[DataProvider('providerConvertToDatabaseValue')]
     public function testConvertToDatabaseValue(?PhoneNumber $value, ?string $expectedValue): void
     {
@@ -97,5 +92,10 @@ class PhoneNumberTypeTest extends TestCase
             [''],
             ['+33'],
         ];
+    }
+
+    private function getPhoneNumberType(): PhoneNumberType
+    {
+        return Type::getType('PhoneNumber');
     }
 }

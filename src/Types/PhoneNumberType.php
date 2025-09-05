@@ -13,7 +13,7 @@ use Doctrine\DBAL\Types\Type;
 
 final class PhoneNumberType extends Type
 {
-    public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform) : ?string
+    public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): ?string
     {
         if ($value === null) {
             return null;
@@ -30,7 +30,7 @@ final class PhoneNumberType extends Type
         );
     }
 
-    public function convertToPHPValue(mixed $value, AbstractPlatform $platform) : ?PhoneNumber
+    public function convertToPHPValue(mixed $value, AbstractPlatform $platform): ?PhoneNumber
     {
         if ($value === null) {
             return null;
@@ -48,10 +48,10 @@ final class PhoneNumberType extends Type
         }
     }
 
-    public function getSQLDeclaration(array $column, AbstractPlatform $platform) : string
+    public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         // E.164 defines the maximum length as 15 digits, to which we add 1 char for the leading + sign.
-        if (!isset($column['length'])) {
+        if (! isset($column['length'])) {
             $column['length'] = 16;
         }
 
