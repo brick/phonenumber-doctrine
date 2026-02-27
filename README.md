@@ -6,7 +6,7 @@ brick/phonenumber-doctrine
 Doctrine type mappings for [brick/phonenumber](https://github.com/brick/phonenumber).
 
 [![Build Status](https://github.com/brick/phonenumber-doctrine/workflows/CI/badge.svg)](https://github.com/brick/phonenumber-doctrine/actions)
-[![Coverage Status](https://coveralls.io/repos/github/brick/phonenumber-doctrine/badge.svg?branch=master)](https://coveralls.io/github/brick/phonenumber-doctrine?branch=master)
+[![Coverage](https://codecov.io/github/brick/phonenumber-doctrine/graph/badge.svg)](https://codecov.io/github/brick/phonenumber-doctrine)
 [![Latest Stable Version](https://poser.pugx.org/brick/phonenumber-doctrine/v/stable)](https://packagist.org/packages/brick/phonenumber-doctrine)
 [![Total Downloads](https://poser.pugx.org/brick/phonenumber-doctrine/downloads)](https://packagist.org/packages/brick/phonenumber-doctrine)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
