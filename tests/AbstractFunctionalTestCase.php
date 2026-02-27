@@ -12,6 +12,7 @@ use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 use PHPUnit\Framework\TestCase;
+
 use const PHP_VERSION_ID;
 
 abstract class AbstractFunctionalTestCase extends TestCase
