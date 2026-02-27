@@ -12,6 +12,7 @@ use Doctrine\ORM\Configuration;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 use PHPUnit\Framework\TestCase;
+use const PHP_VERSION_ID;
 
 abstract class AbstractFunctionalTestCase extends TestCase
 {
@@ -48,6 +49,12 @@ abstract class AbstractFunctionalTestCase extends TestCase
 
     private static function createConfiguration(): Configuration
     {
-        return ORMSetup::createAttributeMetadataConfiguration([__DIR__ . '/tests/Entity']);
+        $config = ORMSetup::createAttributeMetadataConfiguration([__DIR__ . '/tests/Entity']);
+
+        if (PHP_VERSION_ID >= 80400) {
+            $config->enableNativeLazyObjects(true);
+        }
+
+        return $config;
     }
 }
