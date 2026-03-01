@@ -10,9 +10,11 @@ use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Exception\InvalidType;
 use Doctrine\DBAL\Types\Exception\ValueNotConvertible;
 use Doctrine\DBAL\Types\Type;
+use Override;
 
 final class PhoneNumberType extends Type
 {
+    #[Override]
     public function convertToDatabaseValue(mixed $value, AbstractPlatform $platform): ?string
     {
         if ($value === null) {
@@ -30,6 +32,7 @@ final class PhoneNumberType extends Type
         );
     }
 
+    #[Override]
     public function convertToPHPValue(mixed $value, AbstractPlatform $platform): ?PhoneNumber
     {
         if ($value === null) {
@@ -48,6 +51,7 @@ final class PhoneNumberType extends Type
         }
     }
 
+    #[Override]
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         // E.164 defines the maximum length as 15 digits, to which we add 1 char for the leading + sign.
