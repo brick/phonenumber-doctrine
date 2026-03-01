@@ -27,7 +27,7 @@ final class PhoneNumberType extends Type
 
         throw InvalidType::new(
             $value,
-            static::class,
+            self::class,
             [PhoneNumber::class, 'null'],
         );
     }
