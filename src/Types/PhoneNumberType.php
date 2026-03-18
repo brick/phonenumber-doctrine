@@ -40,6 +40,7 @@ final class PhoneNumberType extends Type
         }
 
         try {
+            /** @phpstan-ignore cast.string */
             return PhoneNumber::parse((string) $value);
         } catch (PhoneNumberParseException $e) {
             throw ValueNotConvertible::new(
