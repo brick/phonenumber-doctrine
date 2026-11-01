@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Brick\PhoneNumber\Doctrine\Tests;
 
 use Brick\PhoneNumber\Doctrine\Tests\Entity\User;
+use Brick\PhoneNumber\PhoneNumber;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Tools\DsnParser;
@@ -44,6 +45,17 @@ abstract class AbstractFunctionalTestCase extends TestCase
         return $em->createQueryBuilder()
             ->select('s')
             ->from(User::class, 's')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    final protected function getFirstEntityWithPhoneNumber(EntityManager $em, PhoneNumber|string $phoneNumber): ?User
+    {
+        return $em->createQueryBuilder()
+            ->select('s')
+            ->from(User::class, 's')
+            ->andWhere('s.phoneNumber = :phoneNumber')
+            ->setParameter('phoneNumber', $phoneNumber, 'PhoneNumber')
             ->getQuery()
             ->getOneOrNullResult();
     }
