@@ -11,6 +11,9 @@ use Doctrine\DBAL\Types\Exception\InvalidType;
 use Doctrine\DBAL\Types\Exception\ValueNotConvertible;
 use Doctrine\DBAL\Types\Type;
 use Override;
+use Throwable;
+
+use function is_string;
 
 final class PhoneNumberType extends Type
 {
@@ -21,6 +24,19 @@ final class PhoneNumberType extends Type
             return null;
         }
 
+        if (is_string($value)) {
+            try {
+                $value = PhoneNumber::parse($value);
+            } catch (Throwable $exception) {
+                throw InvalidType::new(
+                    $value,
+                    self::class,
+                    [PhoneNumber::class, 'null', 'phone number string'],
+                    $exception,
+                );
+            }
+        }
+
         if ($value instanceof PhoneNumber) {
             return (string) $value;
         }
@@ -28,7 +44,7 @@ final class PhoneNumberType extends Type
         throw InvalidType::new(
             $value,
             self::class,
-            [PhoneNumber::class, 'null'],
+            [PhoneNumber::class, 'null', 'phone number string'],
         );
     }
 

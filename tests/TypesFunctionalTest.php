@@ -90,4 +90,17 @@ class TypesFunctionalTest extends AbstractFunctionalTestCase
         self::assertInstanceOf(PhoneNumber::class, $entity->phoneNumber);
         self::assertSame('+331234567890', (string) $entity->phoneNumber);
     }
+
+    #[Depends('testSaveValues')]
+    public function testFindByNotNormalizedStringValue(Connection $connection): void
+    {
+        $em = self::createEntityManager($connection);
+
+        $entity = self::getFirstEntityWithPhoneNumber($em, '+33 12 34 56 78 90');
+
+        self::assertNotNull($entity);
+
+        self::assertInstanceOf(PhoneNumber::class, $entity->phoneNumber);
+        self::assertSame('+331234567890', (string) $entity->phoneNumber);
+    }
 }

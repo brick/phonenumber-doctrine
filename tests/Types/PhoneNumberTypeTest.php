@@ -16,7 +16,7 @@ use stdClass;
 class PhoneNumberTypeTest extends TestCase
 {
     #[DataProvider('providerConvertToDatabaseValue')]
-    public function testConvertToDatabaseValue(?PhoneNumber $value, ?string $expectedValue): void
+    public function testConvertToDatabaseValue(null|PhoneNumber|string $value, ?string $expectedValue): void
     {
         $type = $this->getPhoneNumberType();
         $actualValue = $type->convertToDatabaseValue($value, new SQLitePlatform());
@@ -30,6 +30,7 @@ class PhoneNumberTypeTest extends TestCase
             [null, null],
             [PhoneNumber::parse('+331234567890'), '+331234567890'],
             [PhoneNumber::parse('+447553848951'), '+447553848951'],
+            ['+44 75 53 84 89 51', '+447553848951'],
         ];
     }
 
