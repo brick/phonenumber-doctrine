@@ -11,12 +11,12 @@
     "require": {
         "brick/phonenumber": "~0.8.0",
         "doctrine/dbal": "^4.0",
-        "doctrine/orm": "^3.0",
         "php": "^8.2"
     },
     "require-dev": {
         "ext-pdo": "*",
         "ext-pdo_sqlite": "*",
+        "doctrine/orm": "^3.0",
         "phpstan/phpstan": "2.1.42",
         "phpunit/phpunit": "^11.5",
         "symfony/cache": "^5.0 || ^6.0 || ^7.0"
